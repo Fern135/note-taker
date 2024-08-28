@@ -40,6 +40,7 @@ async def activate_virtual_environment(activate_command):
 async def run_django_commands():
     """Run Django setup commands: makemigrations, migrate, and runserver."""
     commands = [
+        'python manage.py collectstatic',
         'python manage.py makemigrations',
         'python manage.py migrate',
         'python manage.py runserver'
