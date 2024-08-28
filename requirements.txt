@@ -1,0 +1,5 @@
+django
+pip-check
+pip-review
+python-dotenv
+django-bootstrap-v5

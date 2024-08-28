@@ -1,0 +1,11 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "note taking app made using django and docker.",
+  "scripts": {
+    "run": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
