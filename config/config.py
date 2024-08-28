@@ -4,12 +4,12 @@ from dotenv import load_dotenv, find_dotenv  # for using dotenv
 load_dotenv(find_dotenv()) # loading up the .env file
 
 class Config(object):
-    DEBUG                           = True # auto reloading the app
-    TESTING                         = False
-    CSRF_ENABLED                    = True
-    apphost                         = os.getenv("HOST")  
-    port                            = os.getenv("PORT")  
-    __APP_NAME__                    = os.getenv("APP_NAME")
+    DEBUG                   = True # auto reloading the app
+    TESTING                 = False
+    CSRF_ENABLED            = True
+    apphost                 = os.getenv("HOST")  
+    port                    = os.getenv("PORT")  
+    __APP_NAME__            = os.getenv("APP_NAME")
 
     #<========== cookies HTTPS and other security ==========> 
     JWT_ALGORITHM           = "HS256"
@@ -40,18 +40,15 @@ class Config(object):
     #<============== mysql database ==============> 
 
 class ProductionConfig(Config):
-    DEBUG                           = False
-    SECRET_KEY                      = os.getenv("SECRET_KEY_PROD")
-    SQLALCHEMY_TRACK_MODIFICATIONS  = False
+    DEBUG          = False
+    SECRET_KEY     = os.getenv("SECRET_KEY_PROD")
     
     def __init__(self):
         super().__init__()  # Call the initializer of the parent class
 
 class DevelopmentConfig(Config):
-    DEBUG                           = True
-    SECRET_KEY                      = os.getenv("SECRET_KEY_DEV")
-    OAUTHLIB_INSECURE_TRANSPORT     = True
-    SQLALCHEMY_TRACK_MODIFICATIONS  = False
+    DEBUG          = True
+    SECRET_KEY     = os.getenv("SECRET_KEY_DEV")
 
     # only in dev mode
     SECURE_HSTS_SECONDS             = 0 # set to zero in development mode,

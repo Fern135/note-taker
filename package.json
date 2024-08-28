@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "note taking app made using django and docker.",
   "scripts": {
-    "run": ""
+    "start": "npm run static && python ./manage.py runserver 3000",
+    "migrate" : "python ./manage.py makemigrations && python ./manage.py migrate",
+    "static" : "python ./manage.py collectstatic"
   },
   "keywords": [],
   "author": "",
