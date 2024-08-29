@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
-from config.config import Config
+from config.config import Config, HttpResponseCodes
 
 from .models import Note
 
@@ -12,6 +12,7 @@ def index(request):
         "app_version" : Config.__APP_VER__,
     }
     return render(request, 'index.html', context=context)
+
 
 @csrf_exempt
 def save_text(request):
@@ -35,21 +36,46 @@ def save_text(request):
         # For now, we'll just return it as a response
         return JsonResponse({ "message" : "Note Saved" }, status=200)
     
+    else:
+        return JsonResponse({ "Message": "Method not allowed" }, status=403) #todo: check for correct 
 
+ 
+@csrf_exempt
 def get_all_notes(request):
-    # Query all notes from the database
-    notes = Note.objects.all()
+    if request.method == 'GET':
+        notes = Note.objects.all()
 
-    # Create a list of dictionaries for each note
-    notes_list = [
-        {
-            "note-id": note.id,
-            "note-title": note.title,
-            "note-content": note.content,
-            "created-at": note.created_at.strftime("%d / %b / %Y %I:%M %p")  # Custom format
-        }
-        for note in notes
-    ]
+        # Create a list of dictionaries for each note
+        notes_list = [
+            {
+                "note-id": note.id,
+                "note-title": note.title,
+                "note-content": note.content,
+                "created-at": note.created_at.strftime("%d / %b / %Y %I:%M %p")  # Custom format
+            }
+            for note in notes
+        ]
 
-    # Return the JSON response
-    return JsonResponse(notes_list, safe=False)
+        # Return the JSON response
+        return JsonResponse(notes_list, safe=False)
+    
+    return JsonResponse({ "message" : "method not allow" }, status=HttpResponseCodes.response_codes['method-not-allowed'])
+    
+
+
+@csrf_exempt
+def delete_by_id(request, id):
+    if request.method == 'DELETE':
+        try:
+            note = Note.objects.get(id=id)
+            note.delete()
+            return JsonResponse({'result': 'Note deleted successfully'})
+        except Note.DoesNotExist:
+            return JsonResponse({'result': 'Note not found'}, status=404)
+
+    return JsonResponse({ "message" : "method not allow" }, status=HttpResponseCodes.response_codes['method-not-allowed'])
+
+
+@csrf_exempt
+def update_by_id(request, id):
+    pass

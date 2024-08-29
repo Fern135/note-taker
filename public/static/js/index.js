@@ -1,16 +1,16 @@
 
-const fetchInterval = 5000;
+const fetchInterval = 500;
+
 
 function submitForm() {
     let title = document.getElementById('title').value;
-    const content = document.getElementById('content').value;
+    let content = document.getElementById('content').value;
     const date = new Date();
 
     if(title.trim() == '') {
         title = `${date.getDate()} / ${date.getDay()} / ${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`;
     }
 
-    // Check if title has at least 200 characters
     if (title.length > 200) {
         alert('Title less than 200 characters.');
         return;
@@ -34,16 +34,36 @@ function submitForm() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        return console.log(response.json());
+        // console.log(response.json());
     })
     .then(result => {
-        alert('Success:', result);
+        console.log('Success:', result);
     })
     .catch(error => {
         alert('Error:', error);
     });
+
+    title.value = "";
+    content.value = "";
 }
 
+function deleteById(id) {
+    const url = `/notes/delete/${id}`; // URL defined in Step 1
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+  
+    fetch(url, fetchOptions)
+      .then(response => response.json())
+      .then(data => {
+        fetchAndRenderNotes();
+        // console.log(data.result);
+    })
+    .catch(error => console.error(error));
+}
 
 function fetchAndRenderNotes() {
     fetch('/notes/all/')  // Replace with your actual endpoint URL
@@ -59,13 +79,26 @@ function fetchAndRenderNotes() {
                     <div class="col-md-4 mb-3">
                         <div class="card text-center">
                             <div class="card-header">
-                                <h3 id="note-title-render">${note["note-title"]}</h3>
+                                <h3 id="note-title-render" class="text-dark">${note["note-title"]}</h3>
                             </div>
                             <div class="card-body">
-                                <h5 id="note-content-render">${note["note-content"]}</h5>
+                                <h5 id="note-content-render" class="text-dark">${note["note-content"]}</h5>
                             </div>
                             <div class="card-footer">
-                                <h4 id="date-time-created">${note["created-at"]}</h4>
+                                <h5 id="date-time-created" class="text-dark">${note["created-at"]}</h5>
+                                <br>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger" onclick="deleteById(${note["note-id"]});">
+                                        Delete
+                                    </button>
+                                    <button type="button" class="btn btn-warning">
+                                        Updated
+                                    </button>
+                                    <button type="button" class="btn btn-success">
+                                        Read
+                                    </button>
+                                </div>
+                                <br>
                             </div>
                         </div>
                     </div>
@@ -77,7 +110,18 @@ function fetchAndRenderNotes() {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchAndRenderNotes(); // Initial fetch
-    setInterval(fetchAndRenderNotes, fetchInterval);  // Refresh data every 5 seconds
+document.addEventListener('keydown', function(event) {
+    if (event.shiftKey && event.key === 'Enter') {
+        submitForm();
+    }
 });
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     fetchAndRenderNotes(); // Initial fetch
+//     setInterval(fetchAndRenderNotes, fetchInterval);  // Refresh data every 5 seconds
+// });
+
+
+fetchAndRenderNotes();
+setInterval(console.clear(), 10000); // clears console every 10 seconds. hopefully
+setInterval(fetchAndRenderNotes, fetchInterval);

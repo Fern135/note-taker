@@ -18,7 +18,7 @@
         {% bootstrap_javascript %}
 
     </head>
-    <body class="bg-secondary text-white">
+    <body class="bg-secondary">
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -43,11 +43,16 @@
                     
                     <br>
                     <div class="d-grid pb-3 pt-3 pr-5 pl-5">
-                        <button type="submit" class="btn btn-success btn-block">Save</button>
+                        <button type="submit" class="btn btn-primary btn-block" onclick="submitForm();">Save</button>
                     </div>
                 </form> 
             </div>
-
+            
+            <hr>
+            <div class="d-grid pt-2">
+                <button type="button" class="btn btn-success btn-block" onclick="fetchAndRenderNotes();">Load</button>
+            </div>
+            
             <hr>
 
             <div class="row" id="notes-container"></div>
