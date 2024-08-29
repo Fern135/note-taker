@@ -1,5 +1,5 @@
 
-const fetchInterval = 500;
+const fetchInterval = 5000;
 
 
 function submitForm() {
@@ -16,7 +16,6 @@ function submitForm() {
         return;
     }
 
-    // Create the JSON object
     const data = {
         title: title,
         content: content
@@ -43,8 +42,8 @@ function submitForm() {
         alert('Error:', error);
     });
 
-    title.value = "";
-    content.value = "";
+    // title.value = "";
+    // content.value = "";
 }
 
 function deleteById(id) {
@@ -92,7 +91,7 @@ function fetchAndRenderNotes() {
                                         Delete
                                     </button>
                                     <button type="button" class="btn btn-warning">
-                                        Updated
+                                        Update
                                     </button>
                                     <button type="button" class="btn btn-success">
                                         Read
@@ -116,12 +115,12 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     fetchAndRenderNotes(); // Initial fetch
-//     setInterval(fetchAndRenderNotes, fetchInterval);  // Refresh data every 5 seconds
-// });
+document.addEventListener('DOMContentLoaded', () => {
+    fetchAndRenderNotes(); // Initial fetch
+    setInterval(fetchAndRenderNotes, fetchInterval);
+});
 
 
-fetchAndRenderNotes();
-setInterval(console.clear(), 10000); // clears console every 10 seconds. hopefully
-setInterval(fetchAndRenderNotes, fetchInterval);
+// fetchAndRenderNotes();
+// // setInterval(console.clear(), 10000); // clears console every 10 seconds. hopefully
+// setInterval(fetchAndRenderNotes, fetchInterval);

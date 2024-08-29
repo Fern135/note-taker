@@ -48,10 +48,10 @@ def get_all_notes(request):
         # Create a list of dictionaries for each note
         notes_list = [
             {
-                "note-id": note.id,
-                "note-title": note.title,
-                "note-content": note.content,
-                "created-at": note.created_at.strftime("%d / %b / %Y %I:%M %p")  # Custom format
+                "note-id"       : note.id,
+                "note-title"    : note.title,
+                "note-content"  : note.content,
+                "created-at"    : note.created_at.strftime("%d / %b / %Y %I:%M %p")  
             }
             for note in notes
         ]
