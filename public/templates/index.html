@@ -24,11 +24,11 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
-        <div class="container text-center">
-            <h1>Note Taker version: </h1>
+        <div class="container text-center pt-5">
+            <h1>Note Taker version: {{ app_version }}</h1>
 
-            <div class="border">
-                <form action="/new/note"> 
+            <div class="border container-fluid">
+                <form id="new-note"> 
                     <!-- Regular text input field -->
                     <h4 class="pt-4" id="note-title" for="title">Title:</h4>
                     {% comment %} <br> {% endcomment %}
@@ -42,9 +42,15 @@
                     <textarea id="content" name="content" rows="10" cols="100" placeholder="Start typing..."></textarea>
                     
                     <br>
-                    <button type="submit">Save</button>
+                    <div class="d-grid pb-3 pt-3 pr-5 pl-5">
+                        <button type="submit" class="btn btn-success btn-block">Save</button>
+                    </div>
                 </form> 
             </div>
+
+            <hr>
+
+            <div class="row" id="notes-container"></div>
 
         </div>
         

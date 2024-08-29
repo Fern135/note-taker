@@ -10,6 +10,7 @@ class Config(object):
     apphost                 = os.getenv("HOST")  
     port                    = os.getenv("PORT")  
     __APP_NAME__            = os.getenv("APP_NAME")
+    __APP_VER__             = "1.0.0"
 
     #<========== cookies HTTPS and other security ==========> 
     JWT_ALGORITHM           = "HS256"
