@@ -5,4 +5,4 @@ def index(request):
     context = { 
         "app_name" : Config.__APP_NAME__
     }
-    return render(request, 'index.html')
+    return render(request, 'index.html', context=context)
