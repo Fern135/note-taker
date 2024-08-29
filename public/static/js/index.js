@@ -1,9 +1,14 @@
 
-const fetchInterval = 1000;
+const fetchInterval = 5000;
 
 function submitForm() {
-    const title = document.getElementById('title').value;
+    let title = document.getElementById('title').value;
     const content = document.getElementById('content').value;
+    const date = new Date();
+
+    if(title.trim() == '') {
+        title = `${date.getDate()} / ${date.getDay()} / ${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`;
+    }
 
     // Check if title has at least 200 characters
     if (title.length > 200) {
