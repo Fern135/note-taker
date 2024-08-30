@@ -9,13 +9,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>{{ app_name }}</title>
-        <meta name="description" content="">
+        <meta name="description" content="Note taking application with what's app integretaion, notes that can be used 
+        for personal use, work, or school., and Spotify integretaion">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
         {% load bootstrap5 %}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
+
+        <style>
+            .spotify-color {
+                background-color: rgb(30, 215, 96) !important;
+                color: white !important;
+            }
+            
+            .whats-app-color {
+                background-color: rgb(95, 252, 123) !important;
+                color: white !important;
+            }
+        </style>
 
     </head>
     <body class="bg-secondary">
@@ -28,9 +41,9 @@
             <h1>Note Taker version: {{ app_version }}</h1>
 
             <div class="tab">
-                <button class="tablinks" class="btn btn-primary" id="defaultOpen" onclick="openCity(event, 'notes')">Notes</button>
-                <button class="tablinks"  class="btn btn-info"  onclick="openCity(event, 'Paris')">What's app</button>
-                <button class="tablinks"  class="btn btn-secondary" onclick="openCity(event, 'Tokyo')">Spotify</button>
+                <button class="tablinks btn btn-primary" id="defaultOpen" onclick="openCity(event, 'notes')">Notes</button>
+                <button class="tablinks btn whats-app-color" onclick="openCity(event, 'whats-app')">What's app</button>
+                <button class="tablinks btn spotify-color" onclick="openCity(event, 'spotify')">Spotify</button>
                 <br>
             </div>
 
