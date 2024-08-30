@@ -1,4 +1,10 @@
+//todo: add update functionality:
+//      which will open a modal with the data
+//      and allow the user to edit the data
+//      and then save the changes ajax
 
+// todo: read will have the same function as above
+//      but will only be readonly
 const fetchInterval = 5000;
 const emoji = ['😀', '😃', '😄', '😁', '😆', '😂', '☺️'];
 
