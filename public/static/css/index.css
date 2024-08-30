@@ -9,11 +9,16 @@
 
 } */
 
+#title {
+    width: 100em;
+    height: auto;
+}
+
 #content {
 
     /* width: 300px; Fixed width */
     /* height: 150px; Fixed height */
-    overflow: unset; /* Allows scrolling for overflow content */
+    overflow: auto; /* Allows scrolling for overflow content */
     
     /* overflow: hidden; */
     

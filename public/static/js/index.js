@@ -1,18 +1,37 @@
 
 const fetchInterval = 5000;
+const emoji = ['😀', '😃', '😄', '😁', '😆', '😂', '☺️'];
 
+function getRandomChoice(arr) {
+    if (arr.length === 0) {
+        throw new Error('Array is empty');
+    }
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function getDateTime() { 
+    const date = new Date();
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    return `${monthNames[date.getMonth()]} / ${date.getDate()} / ${date.getFullYear()} - ${date.getHours() % 12 || 12}:${String(date.getMinutes()).padStart(2, '0')} ${date.getHours() < 12 ? 'am' : 'pm'}`;
+}
 
 function submitForm() {
     let title = document.getElementById('title').value;
     let content = document.getElementById('content').value;
     const date = new Date();
 
-    if(title.trim() == '') {
-        title = `${date.getDate()} / ${date.getDay()} / ${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`;
+    if (title.trim() == '') {
+        title = getDateTime();
     }
 
     if (title.length > 200) {
         alert('Title less than 200 characters.');
+        return;
+    }
+
+    if (content.length <= 0){
+        alert('Content cannot be empty.');
         return;
     }
 
@@ -39,7 +58,7 @@ function submitForm() {
         console.log('Success:', result);
     })
     .catch(error => {
-        alert('Error:', error);
+        console.error('Error:', error);
     });
 
     // title.value = "";
@@ -78,7 +97,7 @@ function fetchAndRenderNotes() {
                     <div class="col-md-4 mb-3">
                         <div class="card text-center">
                             <div class="card-header">
-                                <h3 id="note-title-render" class="text-dark">${note["note-title"]}</h3>
+                                <h4 id="note-title-render" class="text-dark">${note["note-title"]}</h4>
                             </div>
                             <div class="card-body">
                                 <h5 id="note-content-render" class="text-dark">${note["note-content"]}</h5>
@@ -105,9 +124,8 @@ function fetchAndRenderNotes() {
                 container.innerHTML += card;  // Append the card to the container
             });
         })
-    .catch(error => console.error('Error fetching data:', error));
+    .catch(error => console.error('😭 Error fetching data:', error));
 }
-
 
 document.addEventListener('keydown', function(event) {
     if (event.shiftKey && event.key === 'Enter') {
@@ -120,7 +138,3 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(fetchAndRenderNotes, fetchInterval);
 });
 
-
-// fetchAndRenderNotes();
-// // setInterval(console.clear(), 10000); // clears console every 10 seconds. hopefully
-// setInterval(fetchAndRenderNotes, fetchInterval);
