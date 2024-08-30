@@ -27,35 +27,47 @@
         <div class="container text-center pt-5">
             <h1>Note Taker version: {{ app_version }}</h1>
 
-            <div class="border container-fluid">
-                <form id="new-note"> 
-                    <!-- Regular text input field -->
-                    <h4 class="pt-4" id="note-title" for="title">Title:</h4>
-                    {% comment %} <br> {% endcomment %}
-                    <input type="text" id="title" name="title" maxlength="100">
-                    
-                    <br><br>
-                    
-                    <!-- Large text input field -->
-                    <h4 id="note-content" for="content">Content:</h4>
-                    {% comment %} <br> {% endcomment %}
-                    <textarea id="content" name="content" rows="10" cols="100" placeholder="Start typing..."></textarea>
-                    
-                    <br>
-                    <div class="d-grid pb-3 pt-3 pr-5 pl-5">
-                        <button type="submit" class="btn btn-primary btn-block" onclick="submitForm();">Save</button>
-                    </div>
-                </form> 
+            <div class="tab">
+                <button class="tablinks" class="btn btn-primary" id="defaultOpen" onclick="openCity(event, 'notes')">Notes</button>
+                <button class="tablinks"  class="btn btn-info"  onclick="openCity(event, 'Paris')">What's app</button>
+                <button class="tablinks"  class="btn btn-secondary" onclick="openCity(event, 'Tokyo')">Spotify</button>
             </div>
-            
-            <hr>
-            <div class="d-grid pt-2">
-                <button type="button" class="btn btn-success btn-block" onclick="fetchAndRenderNotes();">Load</button>
-            </div>
-            
-            <hr>
 
-            <div class="row" id="notes-container"></div>
+            <div id="notes" class="tabcontent">
+                <div class="border">
+                    <div class="container-fluid">
+                        <form id="new-note"> 
+                            <!-- Regular text input field -->
+                            <h4 class="pt-4" id="note-title" for="title">Title:</h4>
+                            {% comment %} <br> {% endcomment %}
+                            <input type="text" id="title" name="title" maxlength="100">
+                            
+                            <br><br>
+                            
+                            <!-- Large text input field -->
+                            <h4 id="note-content" for="content">Content:</h4>
+                            {% comment %} <br> {% endcomment %}
+                            <textarea id="content" name="content" rows="10" cols="100" placeholder="Start typing..."></textarea>
+                            
+                            <br>
+                            <div class="d-grid pb-3 pt-3 pr-5 pl-5">
+                                <button type="submit" class="btn btn-primary btn-block" onclick="submitForm();">Save</button>
+                            </div>
+                        </form> 
+                    </div>
+                    
+                    <hr>
+                    <div class="d-grid pt-2">
+                        <button type="button" class="btn btn-success btn-block" onclick="fetchAndRenderNotes();">Load</button>
+                    </div>
+                    
+                    <hr>
+
+                    <div class="row" id="notes-container"></div>
+
+                </div>
+            </div>
+
 
         </div>
         

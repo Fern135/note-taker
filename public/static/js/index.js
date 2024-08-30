@@ -9,6 +9,27 @@ function getRandomChoice(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+  
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
 function getDateTime() { 
     const date = new Date();
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -126,6 +147,8 @@ function fetchAndRenderNotes() {
         })
     .catch(error => console.error('😭 Error fetching data:', error));
 }
+
+document.getElementById("defaultOpen").click();
 
 document.addEventListener('keydown', function(event) {
     if (event.shiftKey && event.key === 'Enter') {
