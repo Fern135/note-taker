@@ -2,8 +2,9 @@
 note taking app made using django and docker. 
 
 ## Needed to run 
-- Node.js v18.16.0
-- python  3.12.4
+- Node.js -> v18.16.0
+- python ->  3.12.4
+- basic knowledge of terminal (mac / windows)
 
 # command 1 to activate virtual enviroment
 ## windows
