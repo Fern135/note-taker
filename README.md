@@ -1,5 +1,5 @@
 # note-taker
-note taking app made using django and docker. 
+note taking app made using django. 
 
 ## Needed to run 
 - Node.js -> v18.16.0
