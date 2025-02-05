@@ -3,3 +3,4 @@ pip-check
 pip-review
 python-dotenv
 django-bootstrap-v5
+gunicorn

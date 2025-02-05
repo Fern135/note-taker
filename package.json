@@ -4,10 +4,13 @@
   "description": "note taking app made using django and docker.",
   "scripts": {
     "start": "npm run static && python ./manage.py runserver 3000",
-    "migrate" : "python ./manage.py makemigrations && python ./manage.py migrate",
-    "static" : "python ./manage.py collectstatic"
+    "migrate": "python ./manage.py makemigrations && python ./manage.py migrate",
+    "static": "python ./manage.py collectstatic",
+    "setup" : "cd ./scripts && node setUp.js && cd ../",
+    "build" : "npm run setup && docker compose up --build"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "main": "index.js"
 }
